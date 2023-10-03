@@ -1,0 +1,111 @@
+---
+behaviors:
+  Agent:
+    trainer_type: ppo
+    hyperparameters:
+      batch_size: 1024
+      buffer_size: 10240
+      learning_rate: 0.0003
+      beta: 0.0005
+      epsilon: 0.2
+      lambd: 0.99
+      num_epoch: 6
+      learning_rate_schedule: linear
+    network_settings:
+      normalize: false
+      hidden_units: 256
+      num_layers: 3
+    reward_signals:
+      extrinsic:
+        gamma: 0.99
+        strength: 1
+      gail:
+        strength: 0.5
+        gamma: 0.9
+        demo_path: Assets/Demonstrations/Demo3_0.demo
+        encoding_size: 64
+        use_actions: true
+    behavioral_cloning:
+      strength: 0.3
+      demo_path: Assets/Demonstrations/Demo2_56.25.demo
+      steps: 1000000
+      # Set the number of samples per update (default is 1024)
+      samples_per_update: 1024
+      # Set the number of epochs (default is 1)
+      num_epoch: 1
+      #Set the batch size (default is 32)
+      batch_size: 30
+    time_horizon: 64
+    max_steps: 80000000
+    summary_freq: 50000
+    # self_play:
+    #   window: 10
+    #   play_against_latest_model_ratio: 0.5
+    #   save_steps: 20000
+    #   swap_steps: 10000
+    #   team_change: 100000
+    # self_play:
+    #   num_players: 2
+    #   steps: 1000000
+    #   initial_random_actions: 0
+    #   players:
+    #    - player_index: 0
+    #       trainer_type: ppo
+    #       hyperparameters:
+    #         learning_rate: 0.0003
+    #         batch_size: 128
+    #         epsilon: 0.2
+    #         num_epoch: 3
+    #         gamma: 0.99
+    #         gae_lambda: 0.95
+    #         use_gae: True
+    #         reward_signals:
+    #           extrinsic:
+    #             strength: 1.0
+    #           gail:
+    #             strength: 0.0
+    #         max_steps: 5
+    #         buffer_size: 10240
+    #       model_path: "/Users/o_o/Documents/Unity/lab7to9-robot-tournament-main/results/IM11/Agent/Agent-2741266.onnx"
+    #       self_play:
+    #         swap_opponent: 0.5
+    #         start: 0
+    #         end: 0.5
+    #         evaluations_per_episode: 3
+    #         exclude_n_recent_opponents: 2
+    #         excluded_own_actions: False
+    #         use_last_model_as_opponent: True
+    #         opponent_model_paths:
+    #           - "/Users/o_o/Documents/Unity/lab7to9-robot-tournament-main/Assets/3-2 version.onnx"
+    #           - "/Users/o_o/Documents/Unity/lab7to9-robot-tournament-main/results/IM8/Agent/Agent-15554672.onnx"
+    #           - "/Users/o_o/Documents/Unity/lab7to9-robot-tournament-main/results/IM9/Agent/Agent-4778722.onnx"
+    #      - player_index: 1
+    #       trainer_type: ppo
+    #       hyperparameters:
+    #         learning_rate: 0.0003
+    #        batch_size: 128
+    #         epsilon: 0.2
+    #         num_epoch: 3
+    #         gamma: 0.99
+    #         gae_lambda: 0.95
+    #         use_gae: True
+    #         reward_signals:
+    #           extrinsic:
+    #             strength: 1.0
+    #           gail:
+    #            strength: 0.0
+    #        max_steps: 5
+    #        buffer_size: 10240
+    #      model_path: "/Users/o_o/Documents/Unity/lab7to9-robot-tournament-main/Assets/3-2 version.onnx"
+    #      self_play:
+    #         swap_opponent: 0.5
+    #        start: 0
+    #         end: 0.5
+    #         evaluations_per_episode: 3
+    #         exclude_n_recent_opponents: 2
+    #         excluded_own_actions: False
+    #         use_last_model_as_opponent: True
+    #         opponent_model_paths:
+    #           - "/Users/o_o/Documents/Unity/lab7to9-robot-tournament-main/results/IM11/Agent/Agent-2741266.onnx"
+    #           - "/Users/o_o/Documents/Unity/lab7to9-robot-tournament-main/results/IM9/Agent/Agent-4778722.onnx"
+    #           - "/Users/o_o/Documents/Unity/lab7to9-robot-tournament-main/results/IM1/Agent/Agent-10000244.onnx"
